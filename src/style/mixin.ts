@@ -11,7 +11,8 @@ export const resetList = `
 
 export const resetLink = `
   ${reset}
-  text-decoration: none`;
+  text-decoration: none;
+  `;
 
 export const resetButton = `
  ${reset}

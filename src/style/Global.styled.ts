@@ -14,17 +14,23 @@ body {
     color: ${theme.colors.black};
 }
 
+
+
 h1{
     font-family: ${theme.fonts.primary};
     font-size: ${theme.fontSizes.h1};
 }
-h2, h{
+h2{
     font-family: ${theme.fonts.primary};
     font-size: ${theme.fontSizes.h2};
 }
 
 img {
+    img {
     width: 100%;
+    height: auto;
+    display: block;
+}
 }
 
 .footer-heading {

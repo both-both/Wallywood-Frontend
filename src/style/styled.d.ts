@@ -1,4 +1,4 @@
-import type { theme } from "./Theme";
+import { theme } from "./Theme.styled";
 import "styled-components";
 
 type ThemeType = typeof theme;

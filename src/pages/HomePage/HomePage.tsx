@@ -1,9 +1,14 @@
-import { ContentWrapper } from "../../components/elements/ContantWrapper/ContentWrapper";
+import { ContentWrapper } from "../../components/elements/ContentWrapper/ContentWrapper";
+import HeroImage from "../../assets/Curtains.png";
 
+import { RandomPostersModule } from "../../components/modules/RandomPostersModule/RandomPostersModule";
 export const HomePage = () => {
   return (
     <>
-      <ContentWrapper title="Forside"></ContentWrapper>
+      <img src={HeroImage} alt="Hero Image" />
+      <ContentWrapper title="Fire tilfældige...">
+        <RandomPostersModule />
+      </ContentWrapper>
     </>
   );
 };
