@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 import { useGenres } from "../../../Hooks/useGenre";
+import { GenreListStyled } from "./GenreList.styled";
 
 export const GenreList = () => {
   const { genre, error } = useGenres();
@@ -11,7 +12,7 @@ export const GenreList = () => {
     <>
       <h2>Filtre</h2>
       <h3>Genre</h3>
-      <ul>
+      <GenreListStyled>
         {genre.map((item) => {
           return (
             <li key={item.id} title={item.title}>
@@ -19,7 +20,7 @@ export const GenreList = () => {
             </li>
           );
         })}
-      </ul>
+      </GenreListStyled>
     </>
   );
 };

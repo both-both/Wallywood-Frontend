@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import { endpoints } from "../../../data/Endpoints";
 import { useFetch } from "../../../Hooks/useFetch";
 import { PosterCard } from "../PosterCard/PosterCard";
-import { Container } from "../../elements/Container/Container";
 import type { Poster } from "../../../types/api.types";
 import { useGenres } from "../../../Hooks/useGenre";
+import { PosterListStyled } from "./PosterListModule.styled";
 
 export const PosterListModule = () => {
   const { genreSlug } = useParams();
@@ -28,8 +28,11 @@ export const PosterListModule = () => {
 
   return (
     <>
-      <Container>
-        <h2>{heading}</h2>
+      <h2>
+        {heading} - {data?.length ?? 0}Plakater
+      </h2>
+
+      <PosterListStyled>
         {data &&
           data.map((item) => (
             <PosterCard
@@ -38,11 +41,9 @@ export const PosterListModule = () => {
               image={item.image}
               name={item.name}
               price={item.price}
-              description={item.description}
-              genres={item.genres}
             />
           ))}
-      </Container>
+      </PosterListStyled>
     </>
   );
 };

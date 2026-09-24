@@ -1,14 +1,57 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { NavBarStyled } from "./NavBar.styled";
+import { BsBasket3 } from "react-icons/bs";
+import { HiMenu, HiX } from "react-icons/hi";
+import {
+  BurgerButtonStyled,
+  NavBarStyled,
+  NavLinksStyled,
+} from "./NavBar.styled";
+import { useCart } from "../../../context/CartContext";
 
 export const NavBar = () => {
+  const { totalItems } = useCart();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeMenu = () => setIsOpen(false);
+
   return (
     <NavBarStyled>
-      <NavLink to="/">Forside</NavLink>
-      <NavLink to="/posters">Plakater</NavLink>
-      <NavLink to="/about">Om os</NavLink>
-      <NavLink to="/contact">Kontakt os</NavLink>
-      <NavLink to="/login">Login</NavLink>
+      <NavLinksStyled $isOpen={isOpen}>
+        <NavLink to="/" end onClick={closeMenu}>
+          Forside
+        </NavLink>
+        <NavLink to="/posters" onClick={closeMenu}>
+          Plakater
+        </NavLink>
+        <NavLink to="/about" onClick={closeMenu}>
+          Om os
+        </NavLink>
+        <NavLink to="/contact" onClick={closeMenu}>
+          Kontakt os
+        </NavLink>
+        <NavLink to="/login" onClick={closeMenu}>
+          Login
+        </NavLink>
+      </NavLinksStyled>
+
+      <NavLink
+        to="/cart"
+        className="cart-link"
+        aria-label={`Kurv med ${totalItems} varer`}
+      >
+        <BsBasket3 />
+        {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
+      </NavLink>
+
+      <BurgerButtonStyled
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-label={isOpen ? "Luk menu" : "Åbn menu"}
+      >
+        {isOpen ? <HiX /> : <HiMenu />}
+      </BurgerButtonStyled>
     </NavBarStyled>
   );
 };

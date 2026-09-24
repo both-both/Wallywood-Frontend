@@ -3,6 +3,7 @@ import { HomePage } from "../pages/HomePage/HomePage";
 import { PosterPage } from "../pages/PosterPage/PosterPage";
 import { PosterListModule } from "../components/modules/PosterListModule/PosterListModule";
 import { PosterDetailModule } from "../components/modules/PosterDetailModule/PosterDetailModule";
+import { CartPage } from "../pages/CartPage/CartPage";
 // import { PosterListModule } from "../components/modules/PosterListModule/PosterListModule";
 
 export const AppRouter = () => {
@@ -15,6 +16,7 @@ export const AppRouter = () => {
         <Route path=":id" element={<PosterDetailModule />} />
       </Route>
       {/* <Route path="/contact" element={<ContactPage />} /> */}
+      <Route path="/cart" element={<CartPage />} />
     </Routes>
   );
 };

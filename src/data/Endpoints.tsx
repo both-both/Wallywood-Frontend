@@ -1,5 +1,7 @@
 const BASE_URL = "http://localhost:4000/";
 
+export const USER_ID = 2;
+
 export const endpoints = {
   posters: `${BASE_URL}posters`,
   genre: `${BASE_URL}genre`,

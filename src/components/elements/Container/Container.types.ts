@@ -1,7 +1,7 @@
 export type ContainerTag =
   | "div"
   | "section"
-  | "fielsdset"
+  | "fieldset"
   | "figure"
   | "main"
   | "article";
@@ -12,9 +12,7 @@ export type ContainerProps = {
   innerHTML?: ContainerTag;
   title?: string;
   color?: string;
-  maxwidth?: number;
 };
 export type ContainerStyleProps = {
   $color?: string;
-  $maxwidth?: number;
 };

@@ -31,11 +31,7 @@ export const theme = {
   },
 
   breakpoints: {
-    mobile: "600px",
-    footer: "800px",
-    goals: "1000px",
-    header: "1150px",
-    navigation: "1400px",
+    mobile: "720px",
   },
 
   sizes: {

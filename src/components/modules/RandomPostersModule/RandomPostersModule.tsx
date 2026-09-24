@@ -1,5 +1,6 @@
 import { useRandomPosters } from "../../../Hooks/usePosters";
-import { PosterCard } from "../PosterCard/PosterCard";
+
+import { RandomPosterCard } from "../RandomPosterCard/RandomPosterCard";
 import { PosterGridStyled } from "./RandomPostersModule.styled";
 
 export const RandomPostersModule = () => {
@@ -13,7 +14,7 @@ export const RandomPostersModule = () => {
     <>
       <PosterGridStyled>
         {posters.map((poster) => (
-          <PosterCard
+          <RandomPosterCard
             key={poster.id}
             id={poster.id}
             name={poster.name}

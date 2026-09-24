@@ -1,7 +1,7 @@
 import type { PosterCardProps } from "./PosterCard.types";
 import { Link } from "react-router-dom";
 import {
-  PosterCardActionsStyled,
+  PosterCardButtonsStyled,
   PosterCardBodyStyled,
   PosterCardStyled,
 } from "./PosterCard.styled";
@@ -10,35 +10,29 @@ import {
   IconButtonStyled,
 } from "../../elements/Buttom/Button.styled";
 import { AiOutlineHeart } from "react-icons/ai";
+import { useCart } from "../../../context/CartContext";
 
-export const PosterCard = ({
-  id,
-  name,
-  price,
-  image,
-  description,
-  genres,
-}: PosterCardProps) => {
+export const PosterCard = ({ id, name, image, price }: PosterCardProps) => {
+  const { addToCart } = useCart();
+
   return (
     <PosterCardStyled>
       <Link to={`/posters/${id}`}>
-        <img src={image} alt={name}></img>
+        <img src={image} alt={name} />
       </Link>
+
       <PosterCardBodyStyled>
         <h3>{name}</h3>
-        <div dangerouslySetInnerHTML={{ __html: description }} />
-        <p>Genre: {genres.map((genre) => genre.title).join(", ")}</p>
+        <p>Kr. {price},00</p>
 
-        {price && <p>{price} kr.</p>}
-
-        <PosterCardActionsStyled>
-          <ButtonStyled as={Link} to={`/posters/${id}`}>
-            Læs mere
+        <PosterCardButtonsStyled>
+          <ButtonStyled type="button" onClick={() => addToCart(id)}>
+            Læg i kurv
           </ButtonStyled>
           <IconButtonStyled type="button" aria-label="Gem som favorit">
             <AiOutlineHeart />
           </IconButtonStyled>
-        </PosterCardActionsStyled>
+        </PosterCardButtonsStyled>
       </PosterCardBodyStyled>
     </PosterCardStyled>
   );

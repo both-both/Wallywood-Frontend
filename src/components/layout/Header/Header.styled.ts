@@ -1,20 +1,20 @@
 import styled from "styled-components";
-import { Container } from "../../elements/Container/Container";
-import { theme } from "../../../style/Theme.styled";
 import { Link } from "react-router-dom";
-import { resetLink } from "../../../style/mixin";
+import { pageWidth, resetLink } from "../../../style/mixin";
+import { theme } from "../../../style/Theme.styled";
 
-export const HeaderStyled = styled(Container)`
-  background-color: ${({ theme }) => theme.colors.white};
+export const HeaderStyled = styled.header`
+  ${pageWidth}
+  background-color: ${theme.colors.white};
   padding-inline: 2rem;
-`;
 
-export const HeaderInnerStyled = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-block: 1rem;
-  border-bottom: 2px solid ${theme.colors.secondary};
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 1rem;
+    border-bottom: 1px solid ${theme.colors.secondary};
+  }
 `;
 
 export const LogoStyled = styled(Link)`

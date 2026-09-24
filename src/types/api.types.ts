@@ -13,3 +13,16 @@ export interface Genre {
   title: string;
   slug: string;
 }
+
+export interface Cartline {
+  id: number;
+  userId: number;
+  posterId: number;
+  quantity: number;
+  poster: {
+    name: string;
+    image: string;
+    price: string;
+    slug: string;
+  };
+}

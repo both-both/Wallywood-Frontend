@@ -7,7 +7,6 @@ export const Container = ({
   children,
   title,
   color,
-  maxwidth,
 }: ContainerProps) => {
   return (
     <ContainerStyled
@@ -15,7 +14,6 @@ export const Container = ({
       className={className}
       title={title}
       $color={color}
-      $maxwidth={maxwidth}
     >
       {children}
     </ContainerStyled>
