@@ -1,8 +1,7 @@
 import { useParams } from "react-router-dom";
-import { endpoints } from "../../../data/Endpoints";
-import { useFetch } from "../../../Hooks/useFetch";
+import { usePostersByGenre } from "../../../Hooks/usePosters";
 import { PosterCard } from "../PosterCard/PosterCard";
-import type { Poster } from "../../../types/api.types";
+
 import { useGenres } from "../../../Hooks/useGenre";
 import { PosterListStyled } from "./PosterListModule.styled";
 
@@ -10,12 +9,7 @@ export const PosterListModule = () => {
   const { genreSlug } = useParams();
   const { genre } = useGenres();
 
-  const url = genreSlug
-    ? `${endpoints.posters}?genreSlug=${genreSlug}`
-    : endpoints.posters;
-
-  const { data, isLoading, error } = useFetch<Poster[]>(url);
-
+  const { posters, isLoading, error } = usePostersByGenre(genreSlug);
   const heading =
     genre.find((item) => item.slug === genreSlug)?.title ?? "Alle plaketer";
 
@@ -29,20 +23,19 @@ export const PosterListModule = () => {
   return (
     <>
       <h2>
-        {heading} - {data?.length ?? 0}Plakater
+        {heading} - {posters.length} Plakater
       </h2>
 
       <PosterListStyled>
-        {data &&
-          data.map((item) => (
-            <PosterCard
-              key={item.id}
-              id={item.id}
-              image={item.image}
-              name={item.name}
-              price={item.price}
-            />
-          ))}
+        {posters.map((item) => (
+          <PosterCard
+            key={item.id}
+            id={item.id}
+            image={item.image}
+            name={item.name}
+            price={item.price}
+          />
+        ))}
       </PosterListStyled>
     </>
   );

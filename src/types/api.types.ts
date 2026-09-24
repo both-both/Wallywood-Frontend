@@ -6,6 +6,8 @@ export interface Poster {
   slug: string;
   price: string;
   genres: { title: string }[];
+  width?: number;
+  height?: number;
 }
 
 export interface Genre {

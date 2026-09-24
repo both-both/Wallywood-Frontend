@@ -14,6 +14,11 @@ body {
     color: ${theme.colors.black};
 }
 
+#root {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
 
 
 h1{

@@ -10,6 +10,8 @@ type CartContextValue = {
   removeFromCart: (id: number) => Promise<void>;
 };
 
+// Kurven ligger i context fordi både NavBar PosterCard og CartModule skal bruge den samme kurv. Et almindeligt hook ville give dem hver sin.
+
 const CartContext = createContext<CartContextValue | null>(null);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {

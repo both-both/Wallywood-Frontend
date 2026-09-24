@@ -5,12 +5,9 @@ import {
   PosterCardBodyStyled,
   PosterCardStyled,
 } from "./PosterCard.styled";
-import {
-  ButtonStyled,
-  IconButtonStyled,
-} from "../../elements/Buttom/Button.styled";
-import { AiOutlineHeart } from "react-icons/ai";
+import { ButtonStyled } from "../../elements/Buttom/Button.styled";
 import { useCart } from "../../../context/CartContext";
+import { FavoriteButton } from "../../elements/FavoriteButton/FavoriteButton";
 
 export const PosterCard = ({ id, name, image, price }: PosterCardProps) => {
   const { addToCart } = useCart();
@@ -29,9 +26,7 @@ export const PosterCard = ({ id, name, image, price }: PosterCardProps) => {
           <ButtonStyled type="button" onClick={() => addToCart(id)}>
             Læg i kurv
           </ButtonStyled>
-          <IconButtonStyled type="button" aria-label="Gem som favorit">
-            <AiOutlineHeart />
-          </IconButtonStyled>
+          <FavoriteButton posterId={id} />
         </PosterCardButtonsStyled>
       </PosterCardBodyStyled>
     </PosterCardStyled>

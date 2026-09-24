@@ -16,7 +16,7 @@ export const theme = {
     body: "0.875rem", // 14px
     medium: "1rem", // 16px
     h2: "1.25rem", // 20px
-    navigation: "1.375rem", // 22px
+    navigation: "1.125rem", // 18px
     mobileHeading: "1.5625rem", // 25px
     h1: "2.125rem", // 34px
     logo: "3.375rem", // 54px

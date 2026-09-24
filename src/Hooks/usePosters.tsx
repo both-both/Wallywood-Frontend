@@ -2,6 +2,8 @@ import { endpoints } from "../data/Endpoints";
 import type { Poster } from "../types/api.types";
 import { useFetch } from "./useFetch";
 
+// Tre hooks ovenpå useFetch, ét pr. måde plakater bliver hentet på  bruges så URL'erne skal står et sted
+
 export const useRandomPosters = () => {
   const { data, isLoading, error } = useFetch<Poster[]>(
     `${endpoints.posters}?random=true&limit=4`,
@@ -17,4 +19,11 @@ export const usePostersByGenre = (genreSlug?: string) => {
   const { data, isLoading, error } = useFetch<Poster[]>(url);
 
   return { posters: data ?? [], isLoading, error };
+};
+export const usePoster = (id?: string) => {
+  const { data, isLoading, error } = useFetch<Poster>(
+    `${endpoints.posters}/${id}`,
+  );
+
+  return { poster: data, isLoading, error };
 };

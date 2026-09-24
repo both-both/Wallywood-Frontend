@@ -25,6 +25,7 @@ cursor: pointer;
 `;
 
 export const pageWidth = `
+ width: 100%;
   max-width: ${theme.sizes.maxWidth}px;
   margin-inline: auto;
 `;

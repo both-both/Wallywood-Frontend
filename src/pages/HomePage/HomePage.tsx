@@ -5,7 +5,7 @@ import { RandomPostersModule } from "../../components/modules/RandomPostersModul
 export const HomePage = () => {
   return (
     <>
-      <img src={HeroImage} alt="Hero Image" />
+      <img src={HeroImage} alt="" />
       <ContentWrapper title="Fire tilfældige...">
         <RandomPostersModule />
       </ContentWrapper>

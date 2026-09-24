@@ -5,11 +5,8 @@ import {
   RandomPosterCardStyled,
 } from "./RandomPosterCard.styled";
 import type { RandomPosterCardProps } from "./RandomPosterCard.types";
-import {
-  ButtonStyled,
-  IconButtonStyled,
-} from "../../elements/Buttom/Button.styled";
-import { AiOutlineHeart } from "react-icons/ai";
+import { ButtonStyled } from "../../elements/Buttom/Button.styled";
+import { FavoriteButton } from "../../elements/FavoriteButton/FavoriteButton";
 
 export const RandomPosterCard = ({
   id,
@@ -33,9 +30,7 @@ export const RandomPosterCard = ({
           <ButtonStyled as={Link} to={`/posters/${id}`}>
             Læs mere
           </ButtonStyled>
-          <IconButtonStyled type="button" aria-label="Gem som favorit">
-            <AiOutlineHeart />
-          </IconButtonStyled>
+          <FavoriteButton posterId={id} />
         </RandomPosterCardActionsStyled>
       </RandomPosterCardBodyStyled>
     </RandomPosterCardStyled>
