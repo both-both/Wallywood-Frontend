@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom";
 import { endpoints } from "../../../data/Endpoints";
 import { useFetch } from "../../../Hooks/useFetch";
-import type { PosterProps } from "./PosterListModule.types";
 import { PosterCard } from "../PosterCard/PosterCard";
 import { Container } from "../../elements/Container/Container";
-
+import type { Poster } from "../../../types/api.types";
 import { useGenres } from "../../../Hooks/useGenre";
 
 export const PosterListModule = () => {
@@ -15,7 +14,7 @@ export const PosterListModule = () => {
     ? `${endpoints.posters}?genreSlug=${genreSlug}`
     : endpoints.posters;
 
-  const { data, isLoading, error } = useFetch<PosterProps[]>(url);
+  const { data, isLoading, error } = useFetch<Poster[]>(url);
 
   const heading =
     genre.find((item) => item.slug === genreSlug)?.title ?? "Alle plaketer";
@@ -39,6 +38,8 @@ export const PosterListModule = () => {
               image={item.image}
               name={item.name}
               price={item.price}
+              description={item.description}
+              genres={item.genres}
             />
           ))}
       </Container>

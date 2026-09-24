@@ -1,9 +1,21 @@
 import type { ButtomProps } from "./Button.types";
+import { ButtonStyled } from "./Button.styled";
 
-export const Button = ({ textValue, onClick, type }: ButtomProps) => {
+export const Button = ({
+  textValue,
+  onClick,
+  type,
+  className,
+  ariaLabel,
+}: ButtomProps) => {
   return (
-    <button type={type} onClick={onClick}>
+    <ButtonStyled
+      type={type}
+      onClick={onClick}
+      className={className}
+      aria-label={ariaLabel}
+    >
       {textValue}
-    </button>
+    </ButtonStyled>
   );
 };

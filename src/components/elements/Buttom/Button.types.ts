@@ -5,4 +5,5 @@ export type ButtomProps = {
   className?: string;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
+  ariaLabel?: string;
 };

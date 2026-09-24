@@ -16,6 +16,7 @@ export const resetLink = `
 
 export const resetButton = `
  ${reset}
+  text-decoration: none;
  background: none;
  border: none;
 cursor: pointer;

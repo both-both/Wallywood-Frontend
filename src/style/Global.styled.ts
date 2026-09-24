@@ -19,6 +19,8 @@ body {
 h1{
     font-family: ${theme.fonts.primary};
     font-size: ${theme.fontSizes.h1};
+    color: ${theme.colors.primary};
+    padding: 2rem 0;
 }
 h2{
     font-family: ${theme.fonts.primary};
@@ -26,11 +28,10 @@ h2{
 }
 
 img {
-    img {
     width: 100%;
     height: auto;
     display: block;
-}
+
 }
 
 .footer-heading {

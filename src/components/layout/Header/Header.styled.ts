@@ -4,11 +4,17 @@ import { theme } from "../../../style/Theme.styled";
 import { Link } from "react-router-dom";
 import { resetLink } from "../../../style/mixin";
 
-export const HeaderInnerStyled = styled(Container)`
+export const HeaderStyled = styled(Container)`
+  background-color: ${({ theme }) => theme.colors.white};
+  padding-inline: 2rem;
+`;
+
+export const HeaderInnerStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.colors.white};
+  padding-block: 1rem;
+  border-bottom: 2px solid ${theme.colors.secondary};
 `;
 
 export const LogoStyled = styled(Link)`
