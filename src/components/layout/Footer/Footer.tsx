@@ -19,8 +19,8 @@ export const Footer = () => {
           </Container>
           <Container>
             <p>CVR: 12345678</p>
-            <p>MAIL: info@wallywood.dk</p>
-            <p>MOBIL: +45 9812 3456</p>
+            <p>Mail: info@wallywood.dk</p>
+            <p>Mobil: +45 9812 3456</p>
           </Container>
         </Container>
 
