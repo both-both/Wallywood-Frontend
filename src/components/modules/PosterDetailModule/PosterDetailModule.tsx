@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-
 import { usePoster } from "../../../Hooks/usePosters";
 import { useCart } from "../../../context/CartContext";
 import { ButtonStyled } from "../../elements/Buttom/Button.styled";
@@ -10,13 +9,14 @@ import {
   PosterDetailButtonsStyled,
 } from "./PosterDetailModule.styled";
 import { FavoriteButton } from "../../elements/FavoriteButton/FavoriteButton";
+import { Loader } from "../../elements/Loader/Loader";
 
 export const PosterDetailModule = () => {
   const { id } = useParams();
   const { poster, isLoading, error } = usePoster(id);
   const { addToCart } = useCart();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loader />;
   if (error) return <p>{error}</p>;
   if (!poster) return <p>Plakaten blev ikke fundet.</p>;
 
@@ -45,7 +45,7 @@ export const PosterDetailModule = () => {
         </PosterDetailButtonsStyled>
       </PosterDetailBodyStyled>
 
-      <img src={poster.image} alt={poster.name} />
+      <img src={poster.image} alt={poster.name} title={poster.name} />
     </PosterDetailStyled>
   );
 };

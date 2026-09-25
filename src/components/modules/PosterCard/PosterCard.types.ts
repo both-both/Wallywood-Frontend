@@ -3,4 +3,5 @@ export type PosterCardProps = {
   name: string;
   image: string;
   price: string;
+  title: string;
 };

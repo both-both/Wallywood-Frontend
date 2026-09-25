@@ -18,7 +18,7 @@ export const RandomPosterCard = ({
   return (
     <RandomPosterCardStyled>
       <Link to={`/posters${id}`}>
-        <img src={image} alt={name} />
+        <img src={image} alt={name} title={name} />
       </Link>
 
       <RandomPosterCardBodyStyled>
