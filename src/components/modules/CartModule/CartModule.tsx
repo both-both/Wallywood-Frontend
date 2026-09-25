@@ -8,13 +8,15 @@ import {
 } from "./CartModule.styled";
 
 export const CartModule = () => {
-  const { cartlines, removeFromCart } = useCart();
+  const { cartData, removeFromCart } = useCart();
 
-  if (cartlines.length === 0) {
+  console.log(cartData);
+
+  if (cartData.length === 0) {
     return <p>Din kurv er tom.</p>;
   }
 
-  const total = cartlines.reduce(
+  const total = cartData.reduce(
     (sum, line) => sum + Number(line.poster.price) * line.quantity,
     0,
   );
@@ -22,7 +24,7 @@ export const CartModule = () => {
   return (
     <>
       <CartListStyled>
-        {cartlines.map((line) => (
+        {cartData.map((line) => (
           <CartLineStyled key={line.id}>
             <img src={line.poster.image} alt={line.poster.name} />
 

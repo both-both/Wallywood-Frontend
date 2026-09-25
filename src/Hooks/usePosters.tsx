@@ -2,7 +2,7 @@ import { endpoints } from "../data/Endpoints";
 import type { Poster } from "../types/api.types";
 import { useFetch } from "./useFetch";
 
-// Tre hooks ovenpå useFetch, ét pr. måde plakater bliver hentet på  bruges så URL'erne skal står et sted
+// Tre hooks ovenpå useFetch, ét pr. måde plakater bliver hentet  bruges så t URL'erne skal står et sted
 
 export const useRandomPosters = () => {
   const { data, isLoading, error } = useFetch<Poster[]>(

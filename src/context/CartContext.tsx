@@ -1,10 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 import { endpoints, USER_ID } from "../data/Endpoints";
 import type { Cartline } from "../types/api.types";
+import { useCartData } from "../Hooks/useCartData";
 
 type CartContextValue = {
-  cartlines: Cartline[];
+  cartData: Cartline[];
   totalItems: number;
   addToCart: (posterId: number) => Promise<void>;
   removeFromCart: (id: number) => Promise<void>;
@@ -15,18 +16,9 @@ type CartContextValue = {
 const CartContext = createContext<CartContextValue | null>(null);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
+  const [trigger, setTrigger] = useState(0);
+  const { cartData } = useCartData(trigger);
   const [cartlines, setCartlines] = useState<Cartline[]>([]);
-
-  // Henter kurven forfra. Kaldes efter hver ændring.
-  const loadCart = async () => {
-    const response = await fetch(`${endpoints.cartline}?userId=${USER_ID}`);
-    const data: Cartline[] = await response.json();
-    setCartlines(data);
-  };
-
-  useEffect(() => {
-    loadCart();
-  }, []);
 
   const addToCart = async (posterId: number) => {
     await fetch(endpoints.cartline, {
@@ -34,19 +26,19 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId: USER_ID, posterId, quantity: 1 }),
     });
-    await loadCart();
+    setTrigger((t) => t + 1);
   };
 
   const removeFromCart = async (id: number) => {
     await fetch(`${endpoints.cartline}/${id}`, { method: "DELETE" });
-    await loadCart();
+    setTrigger((t) => t + 1);
   };
 
-  const totalItems = cartlines.reduce((sum, line) => sum + line.quantity, 0);
+  const totalItems = cartData.reduce((sum, line) => sum + line.quantity, 0);
 
   return (
     <CartContext.Provider
-      value={{ cartlines, totalItems, addToCart, removeFromCart }}
+      value={{ cartData, totalItems, addToCart, removeFromCart }}
     >
       {children}
     </CartContext.Provider>

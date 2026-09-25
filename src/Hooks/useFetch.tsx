@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 
 type HttpMethod = "GET" | "PUT" | "POST" | "DELETE";
 
+const DELAY = 2000;
+
 export const useFetch = <T,>(
   url: string,
   method: HttpMethod = "GET",
   token?: string | null,
-  delay = 0,
+  trigger = 0,
 ) => {
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -17,7 +19,7 @@ export const useFetch = <T,>(
       try {
         setIsLoading(true);
         setError(null);
-        await new Promise((resolve) => setTimeout(resolve, delay));
+        await new Promise((resolve) => setTimeout(resolve, DELAY));
 
         const response = await fetch(url, {
           method,
@@ -42,6 +44,6 @@ export const useFetch = <T,>(
     };
 
     fetchData();
-  }, [url, method, token, delay]);
-  return { data, isLoading, error };
+  }, [url, method, token, trigger]);
+  return { data, isLoading, error, trigger };
 };

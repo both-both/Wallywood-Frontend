@@ -56,6 +56,7 @@ export const NavLinksStyled = styled.div<{ $isOpen: boolean }>`
   display: flex;
   gap: 2rem;
   align-items: center;
+  min-width: max-content;
 
   @media (max-width: ${theme.breakpoints.mobile}) {
     display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};

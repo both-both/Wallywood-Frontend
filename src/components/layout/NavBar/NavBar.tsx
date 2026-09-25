@@ -13,6 +13,7 @@ export const NavBar = () => {
   const { totalItems } = useCart();
   const [isOpen, setIsOpen] = useState(false);
 
+  //Gør så burgermenuen lukker når man trykker på det af Navlinksne
   const closeMenu = () => setIsOpen(false);
 
   return (

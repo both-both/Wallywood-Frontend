@@ -4,6 +4,8 @@ import { PosterCard } from "../PosterCard/PosterCard";
 
 import { useGenres } from "../../../Hooks/useGenre";
 import { PosterListStyled } from "./PosterListModule.styled";
+import { Loader } from "../../elements/Loader/Loader";
+import { theme } from "../../../style/Theme.styled";
 
 export const PosterListModule = () => {
   const { genreSlug } = useParams();
@@ -14,7 +16,7 @@ export const PosterListModule = () => {
     genre.find((item) => item.slug === genreSlug)?.title ?? "Alle plaketer";
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
   if (error) {
     return <p>{error}</p>;
