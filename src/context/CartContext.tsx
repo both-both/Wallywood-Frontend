@@ -18,14 +18,30 @@ const CartContext = createContext<CartContextValue | null>(null);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [trigger, setTrigger] = useState(0);
   const { cartData } = useCartData(trigger);
-  const [cartlines, setCartlines] = useState<Cartline[]>([]);
 
   const addToCart = async (posterId: number) => {
-    await fetch(endpoints.cartline, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId: USER_ID, posterId, quantity: 1 }),
-    });
+    // Findes plakaten i kurven, tæller vi op på den linje i stedet for at
+    // oprette en ny. Ellers ville samme plakat optræde flere gange.
+    const existing = cartData.find((line) => line.posterId === posterId);
+
+    if (existing) {
+      await fetch(`${endpoints.cartline}/${existing.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: USER_ID,
+          posterId,
+          quantity: existing.quantity + 1,
+        }),
+      });
+    } else {
+      await fetch(endpoints.cartline, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: USER_ID, posterId, quantity: 1 }),
+      });
+    }
+
     setTrigger((t) => t + 1);
   };
 

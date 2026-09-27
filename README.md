@@ -38,7 +38,7 @@ Betaling og ordreafslutning er ikke en del af opgaven.
 Kopiér `.env.example` til `.env` i roden af projektet:
 
 ```
-cp .env.example .env
+cp  .env.example .env
 ```
 
 Filen indeholder:

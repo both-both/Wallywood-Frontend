@@ -5,15 +5,14 @@ import { PosterCard } from "../PosterCard/PosterCard";
 import { useGenres } from "../../../Hooks/useGenre";
 import { PosterListStyled } from "./PosterListModule.styled";
 import { Loader } from "../../elements/Loader/Loader";
-import { theme } from "../../../style/Theme.styled";
 
 export const PosterListModule = () => {
   const { genreSlug } = useParams();
-  const { genre } = useGenres();
+  const { genres } = useGenres();
 
   const { posters, isLoading, error } = usePostersByGenre(genreSlug);
   const heading =
-    genre.find((item) => item.slug === genreSlug)?.title ?? "Alle plaketer";
+    genres.find((item) => item.slug === genreSlug)?.title ?? "Alle plaketer";
 
   if (isLoading) {
     return <Loader />;

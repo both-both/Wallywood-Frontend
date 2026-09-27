@@ -9,13 +9,7 @@ import { ButtonStyled } from "../../elements/Buttom/Button.styled";
 import { useCart } from "../../../context/CartContext";
 import { FavoriteButton } from "../../elements/FavoriteButton/FavoriteButton";
 
-export const PosterCard = ({
-  id,
-  name,
-  image,
-  price,
-  title,
-}: PosterCardProps) => {
+export const PosterCard = ({ id, name, image, price }: PosterCardProps) => {
   const { addToCart } = useCart();
 
   return (

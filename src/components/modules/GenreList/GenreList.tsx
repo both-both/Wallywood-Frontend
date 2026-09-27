@@ -4,7 +4,7 @@ import { useGenres } from "../../../Hooks/useGenre";
 import { GenreListStyled } from "./GenreList.styled";
 
 export const GenreList = () => {
-  const { genre, error } = useGenres();
+  const { genres, error } = useGenres();
 
   if (error) return <p>{error}</p>;
 
@@ -13,9 +13,9 @@ export const GenreList = () => {
       <h2>Filtre</h2>
       <h3>Genre</h3>
       <GenreListStyled>
-        {genre.map((item) => {
+        {genres.map((item) => {
           return (
-            <li key={item.id} title={item.title}>
+            <li key={item.id}>
               <NavLink to={`/posters/genre/${item.slug}`}>{item.title}</NavLink>
             </li>
           );

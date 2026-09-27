@@ -4,7 +4,7 @@ type HttpMethod = "GET" | "PUT" | "POST" | "DELETE";
 
 const DELAY = 2000;
 
-export const useFetch = <T,>(
+export const useFetch = <T>(
   url: string,
   method: HttpMethod = "GET",
   token?: string | null,
@@ -45,5 +45,5 @@ export const useFetch = <T,>(
 
     fetchData();
   }, [url, method, token, trigger]);
-  return { data, isLoading, error, trigger };
+  return { data, isLoading, error };
 };
