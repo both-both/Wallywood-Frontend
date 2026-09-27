@@ -10,6 +10,8 @@ import {
 import { useCart } from "../../../context/CartContext";
 
 export const NavBar = () => {
+  // totalItems kommer fra contexten, så tallet på kurvikonet opdaterer
+
   const { totalItems } = useCart();
   const [isOpen, setIsOpen] = useState(false);
 

@@ -10,8 +10,7 @@ import {
 export const CartModule = () => {
   const { cartData, removeFromCart } = useCart();
 
-  console.log(cartData);
-
+  // Da en tom kurv er ikke en fejl så den viser en besked i stedet for en tom liste.
   if (cartData.length === 0) {
     return <p>Din kurv er tom.</p>;
   }

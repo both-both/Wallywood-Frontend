@@ -8,7 +8,7 @@ export const useFetch = <T>(
   url: string,
   method: HttpMethod = "GET",
   token?: string | null,
-  trigger = 0,
+  trigger = 0, // Tælles op, når data skal hentes igen. Den ligger i useEffect's dependency-array, så en ny værdi starter en ny fetch. Kun kurven brugestil at opdatere sig selv efter en ændring
 ) => {
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -44,6 +44,6 @@ export const useFetch = <T>(
     };
 
     fetchData();
-  }, [url, method, token, trigger]);
+  }, [url, method, token, trigger]); // dependen
   return { data, isLoading, error };
 };

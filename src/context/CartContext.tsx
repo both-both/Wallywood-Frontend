@@ -11,19 +11,18 @@ type CartContextValue = {
   removeFromCart: (id: number) => Promise<void>;
 };
 
-// Kurven ligger i context fordi både NavBar PosterCard og CartModule skal bruge den samme kurv. Et almindeligt hook ville give dem hver sin.
-
+// fordi NavBar, PosterCard, PosterDetailModule og CartModule alle skal læse og ændre på den samme kurv, ligger Kurven i en context
 const CartContext = createContext<CartContextValue | null>(null);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
+  // Kurven findes kun i databasen. så derfor tælles trigger op efter hver POST, PUT og DELETE, og det får useCartData til at hente forfra
   const [trigger, setTrigger] = useState(0);
   const { cartData } = useCartData(trigger);
 
   const addToCart = async (posterId: number) => {
-    // Findes plakaten i kurven, tæller vi op på den linje i stedet for at
-    // oprette en ny. Ellers ville samme plakat optræde flere gange.
     const existing = cartData.find((line) => line.posterId === posterId);
 
+    // hvis plakaten allerede i kurven: tæller antallet op på den linje med PUT
     if (existing) {
       await fetch(`${endpoints.cartline}/${existing.id}`, {
         method: "PUT",
@@ -35,6 +34,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         }),
       });
     } else {
+      // Ny Plakat kurven: opretter en ny linje med  med POST.
       await fetch(endpoints.cartline, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -45,11 +45,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setTrigger((t) => t + 1);
   };
 
+  // Sleter en kurvlinje med linjens eget id i stien, ikke plakatens id.
   const removeFromCart = async (id: number) => {
     await fetch(`${endpoints.cartline}/${id}`, { method: "DELETE" });
     setTrigger((t) => t + 1);
   };
 
+  // Samlet antal varer der er i kurven. Det er tallet der vises på kurv-ikonet i NavBar.
   const totalItems = cartData.reduce((sum, line) => sum + line.quantity, 0);
 
   return (
@@ -60,6 +62,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     </CartContext.Provider>
   );
 };
+// UseCart eget hook så komponenter kun skal importere useCart og ikke både useContext og CartContext. Fejlen fanger det, hvis en komponent bruges uden CartProvider.
 
 export const useCart = () => {
   const context = useContext(CartContext);
